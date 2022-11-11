@@ -16,4 +16,10 @@ class EloquentController extends Controller
         $users = $this->user_model->all();
         return view('one-to-one', compact('users'));
     }
+
+    public function one_to_many()
+    {
+        $users = $this->user_model->all();
+        return view('one-to-many', compact('users'));
+    }
 }

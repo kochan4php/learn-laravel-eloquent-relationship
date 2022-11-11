@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,10 +51,20 @@ class User extends Authenticatable
     public function phone(): HasOne
     {
         /**
-         * Pengertian relasi hasOne()
+         * Pengertian relasi hasOne()paramter1, parameter2
          * 1. Parameter pertama berisi model / table yang ingin direlasikan
          * 2. Parameter kedua berisi foreign key di table child nya (kasusnya disini table phones)
          */
         return $this->hasOne(Phone::class, 'id_user');
+    }
+
+    public function posts(): HasMany
+    {
+        /**
+         * Pengertian relasi hasMany(paramter1, parameter2)
+         * 1. Parameter pertama berisi model / table yang ingin direlasikan
+         * 2. Parameter kedua berisi foreign key di table child nya (kasusnya disini table posts)
+         */
+        return $this->hasMany(Post::class, 'id_user');
     }
 }

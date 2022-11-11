@@ -17,7 +17,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">One to Many</a>
+                    <a class="nav-link @if (Request::is('learn-laravel-eloquent-relationship/one-to-many')) active @endif"
+                        href="{{ route('one-to-many') }}">
+                        One to Many
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Many to Many</a>
