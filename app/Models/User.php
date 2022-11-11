@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
     ];
@@ -28,10 +29,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast.
@@ -45,4 +46,14 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $primaryKey = 'id_user';
     public $timestamps = false;
+
+    public function phone(): HasOne
+    {
+        /**
+         * Pengertian relasi hasOne()
+         * 1. Parameter pertama berisi model / table yang ingin direlasikan
+         * 2. Parameter kedua berisi foreign key di table child nya (kasusnya disini table phones)
+         */
+        return $this->hasOne(Phone::class, 'id_user');
+    }
 }

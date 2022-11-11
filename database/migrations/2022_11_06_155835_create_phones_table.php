@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->integer('id_phone', true);
+            $table->integer('id_user');
             $table->string('no_telp');
+            $table
+                ->foreign('id_user')
+                ->references('id_user')
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
